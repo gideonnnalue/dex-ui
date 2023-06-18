@@ -1,18 +1,21 @@
-import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { extendTheme, type ThemeConfig, StyleConfig } from "@chakra-ui/react";
+import type {
+  StyleFunctionProps,
+  CustomThemeTypings,
+} from "@chakra-ui/styled-system";
 
 const config: ThemeConfig = {
-  initialColorMode: 'dark',
+  initialColorMode: "dark",
   useSystemColorMode: false,
-}
+};
 
 const styles = {
-  global: (props) => {
-    console.log(props)
+  global: () => {
     return {
       html: {
         background: `linear(to-r, green.200, pink.500)`,
       },
-    }
+    };
   },
 };
 
@@ -31,4 +34,29 @@ const colors = {
   },
 };
 
-export default extendTheme({ config, colors, styles });
+const components: Record<string, StyleConfig> = {
+  Button: {
+    variants: {
+      "swap-btn": (props: StyleFunctionProps) => {
+        console.log(props)
+        const { solid } = props.theme.components.Button.variants;
+        return {
+          ...solid(props),
+          color: "brand.200",
+          bg: "rgba(76, 130, 251, 0.34)",
+          // borderRadius: 1000,
+          padding: "10px 12px",
+          fontSize: 16,
+          _hover: {
+            ...solid(props)._hover,
+            bg: "rgba(76, 130, 251, 0.24);",
+          },
+        };
+      },
+    },
+  },
+};
+
+const customConfig: CustomThemeTypings = { config, colors, styles, components };
+
+export default extendTheme({ ...customConfig });
