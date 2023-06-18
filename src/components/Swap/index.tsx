@@ -8,8 +8,9 @@ import {
   Text,
   VStack,
   IconButton,
+  HStack,
 } from "@chakra-ui/react";
-import { ArrowDownIcon } from "@chakra-ui/icons";
+import { ArrowDownIcon, SettingsIcon } from "@chakra-ui/icons";
 import SwapInput from "components/SwapInput";
 
 const Swap = () => {
@@ -23,7 +24,13 @@ const Swap = () => {
           borderWidth="1px"
           padding={1}
         >
-          <VStack>
+          <VStack gap={1}>
+            <Flex justifyContent="space-between" width="100%" paddingRight={3} paddingLeft={3}>
+              <Button variant="ghost" padding={0} height="unset" fontSize={13} fontWeight={700}>
+                Swap
+              </Button>
+              <IconButton variant="ghost" aria-label="settings" padding={0} icon={<SettingsIcon />} />
+            </Flex>
             <VStack gap={0.5} position="relative">
               <SwapInput />
               <SwapInput />

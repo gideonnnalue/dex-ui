@@ -20,7 +20,7 @@ const Header = () => {
             <ChevronDownIcon marginLeft={1} boxSize={5} />
           </Flex>
         </Button>
-        <Button variant="swap-btn">Connect</Button>
+        <Button variant="swap-btn" borderRadius={21}>Connect</Button>
       </Flex>
     </Flex>
   );
