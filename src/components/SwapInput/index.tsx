@@ -12,6 +12,7 @@ const SwapInput = () => {
       paddingRight={3}
       transitionProperty="borderWidth"
       transitionDuration="1.3s"
+      _hover={{ borderColor: "whiteAlpha.50" }}
       _focusWithin={{ borderColor: "whiteAlpha.300" }}
       borderColor="transparent"
       borderWidth={1}

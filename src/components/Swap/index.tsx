@@ -3,12 +3,9 @@ import {
   Center,
   Box,
   Flex,
-  Input,
   Button,
-  Text,
   VStack,
-  IconButton,
-  HStack,
+  IconButton
 } from "@chakra-ui/react";
 import { ArrowDownIcon, SettingsIcon } from "@chakra-ui/icons";
 import SwapInput from "components/SwapInput";
