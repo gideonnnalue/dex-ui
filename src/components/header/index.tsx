@@ -30,7 +30,11 @@ const chainList = [
   { name: "BNB Chain", img: bnbImg },
 ];
 
-const Header = () => {
+type DrawerProps = {
+  openDrawer: () => void;
+};
+
+const Header = ({ openDrawer }: DrawerProps) => {
   const [chain, setChain] = useState(chainList[0]);
   return (
     <Flex justify="space-between" alignItems="center" padding="10px 10px">
@@ -72,7 +76,15 @@ const Header = () => {
         {/* <Button variant="swap-btn" borderRadius={21}>
           Connect
         </Button> */}
-        <Button display="flex" justifyContent="center" gap={2} variant="ghost" borderWidth={1} borderRadius={100}>
+        <Button
+          display="flex"
+          justifyContent="center"
+          gap={2}
+          variant="ghost"
+          borderWidth={1}
+          borderRadius={100}
+          onClick={openDrawer}
+        >
           <Circle size={21} overflow="hidden">
             <UserSvg />
           </Circle>

@@ -1,28 +1,28 @@
 const UserSvg = () => {
   return (
-    <svg x="0" y="0" width="24" height="24">
+    <svg x="0" y="0" width="40" height="40">
       <rect
         x="0"
         y="0"
-        width="24"
-        height="24"
-        transform="translate(-0.11877566235801179 -0.1913799791852048) rotate(341.5 12 12)"
+        width="40"
+        height="40"
+        transform="translate(-0.197959437263353 -0.31896663197534136) rotate(341.5 20 20)"
         fill="#FA7D00"
       ></rect>
       <rect
         x="0"
         y="0"
-        width="24"
-        height="24"
-        transform="translate(10.762716171536594 9.509482698599305) rotate(59.7 12 12)"
+        width="40"
+        height="40"
+        transform="translate(17.937860285894324 15.849137830998842) rotate(59.7 20 20)"
         fill="#034D5E"
       ></rect>
       <rect
         x="0"
         y="0"
-        width="24"
-        height="24"
-        transform="translate(16.71607339689166 -0.5810876275291547) rotate(487.5 12 12)"
+        width="40"
+        height="40"
+        transform="translate(27.86012232815277 -0.9684793792152577) rotate(487.5 20 20)"
         fill="#F2A602"
       ></rect>
     </svg>
