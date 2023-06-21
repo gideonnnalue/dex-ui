@@ -16,15 +16,15 @@ const App = () => {
         <Swap />
         <AnimatePresence>
           {isDrawerVisible && (
-            <motion.nav
-              initial={{ translateX: 500, visibility: "hidden" }}
-              animate={{ translateX: 0, visibility: "visible" }}
-              exit={{ translateX: 500, visibility: "hidden" }}
+            <motion.div
+              initial={{ translateX: 500 }}
+              animate={{ translateX: 0 }}
+              exit={{ translateX: 500 }}
             >
               <SideDrawer
                 closeDrawer={() => setIsDrawerVisible((prev) => !prev)}
               />
-            </motion.nav>
+            </motion.div>
           )}
         </AnimatePresence>
       </Layout>
