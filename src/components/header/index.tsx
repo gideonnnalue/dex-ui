@@ -69,15 +69,15 @@ const Header = () => {
             ))}
           </MenuList>
         </Menu>
-        <Button variant="swap-btn" borderRadius={21}>
+        {/* <Button variant="swap-btn" borderRadius={21}>
           Connect
-        </Button>
-        {/* <Button> */}
-          <Circle size={20} overflow="hidden">
+        </Button> */}
+        <Button display="flex" justifyContent="center" gap={2} variant="ghost" borderWidth={1} borderRadius={100}>
+          <Circle size={21} overflow="hidden">
             <UserSvg />
           </Circle>
           <Text>0x832F...F931</Text>
-        {/* </Button> */}
+        </Button>
       </Flex>
     </Flex>
   );
