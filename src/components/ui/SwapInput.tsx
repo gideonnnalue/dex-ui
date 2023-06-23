@@ -1,7 +1,16 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Flex, Input, Button, Text, VStack } from "@chakra-ui/react";
+import {
+  Flex,
+  Input,
+  Button,
+  Text,
+  VStack,
+  useDisclosure,
+} from "@chakra-ui/react";
+import TokenSelect from "./TokenSelect";
 
 const SwapInput = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <VStack
       bg="rgb(19, 26, 42)"
@@ -34,6 +43,7 @@ const SwapInput = () => {
           borderRadius={1000}
           height="fit-content"
           minHeight="unset"
+          onClick={onOpen}
         >
           <Text as="span" fontSize={8} marginRight={2}>
             ETH
@@ -50,6 +60,7 @@ const SwapInput = () => {
           Balance: 0
         </Text>
       </Flex> */}
+      <TokenSelect isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
     </VStack>
   );
 };

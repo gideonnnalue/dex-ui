@@ -51,37 +51,44 @@ const tokeList = [
   { name: "BNB Chain", token: "BNB", img: bnbImg },
 ];
 
-const TokenSelect = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+type TokenSelectProps = {
+  isOpen: boolean;
+  onOpen: () => unknown;
+  onClose: () => unknown;
+};
+
+const TokenSelect = (props: TokenSelectProps) => {
+  const { isOpen, onOpen, onClose } = props;
   return (
-    <>
-      <Button onClick={onOpen}>Open Modal</Button>
-      <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
-        <ModalOverlay />
-        <ModalContent bg="brand.900">
-          <ModalHeader fontSize={16}>Select a Token</ModalHeader>
-          <ModalCloseButton />
-          <VStack px={6} pb={6} borderBottomWidth={1}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <Icon as={FiSearch} boxSize={6} color="whiteAlpha.600" />
-              </InputLeftElement>
-              <Input borderRadius={10} type="tel" placeholder="Search name or paste address" />
-            </InputGroup>
-          </VStack>
-          <ModalBody px={0}>
-            {tokeList.map((token) => (
-              <SelectItem
-                key={token.name}
-                name={token.name}
-                token={token.token}
-                img={token.img}
-              />
-            ))}
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
+    <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
+      <ModalOverlay />
+      <ModalContent bg="brand.900">
+        <ModalHeader fontSize={16}>Select a Token</ModalHeader>
+        <ModalCloseButton />
+        <VStack px={6} pb={6} borderBottomWidth={1}>
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+              <Icon as={FiSearch} boxSize={6} color="whiteAlpha.600" />
+            </InputLeftElement>
+            <Input
+              borderRadius={10}
+              type="tel"
+              placeholder="Search name or paste address"
+            />
+          </InputGroup>
+        </VStack>
+        <ModalBody px={0}>
+          {tokeList.map((token) => (
+            <SelectItem
+              key={token.name}
+              name={token.name}
+              token={token.token}
+              img={token.img}
+            />
+          ))}
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 };
 
