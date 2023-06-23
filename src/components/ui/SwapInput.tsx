@@ -17,7 +17,7 @@ const SwapInput = () => {
       borderColor="transparent"
       borderWidth={1}
       gap={1}
-      height={110}
+      height={100}
     >
       <Flex alignItems="center" mb={2}>
         <Input

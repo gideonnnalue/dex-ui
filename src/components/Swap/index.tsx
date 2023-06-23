@@ -18,7 +18,7 @@ const Swap = () => {
     <Container>
       <Center>
         <Box
-          width={500}
+          width={470}
           bg="brand.900"
           borderRadius={20}
           borderWidth="1px"
