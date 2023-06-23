@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import UserSvg from "assets/UserSvg";
+import { useState } from "react";
 import { AiOutlinePoweroff, AiOutlineSetting } from "react-icons/ai";
 
 const closeBtn = css`
@@ -32,11 +33,25 @@ const copyWalletStyle = css`
 
 type SideDrawerProps = {
   closeDrawer: () => void;
+  isVisible: boolean;
 };
 
-const SideDrawer = ({ closeDrawer }: SideDrawerProps) => {
+const SideDrawer = ({ closeDrawer, isVisible }: SideDrawerProps) => {
+  const [disconnectPressed, setDisconnectPressed] = useState(false);
+  const handleDisconnect = () => {
+    setDisconnectPressed(prev => !prev)
+  }
   return (
-    <Box position="fixed" width={420} height="100%" top={0} right={0}>
+    <Box
+      transform={`translateX(${isVisible ? "0px" : "500px"})`}
+      visibility={isVisible ? "visible" : "hidden"}
+      position="fixed"
+      width={420}
+      height="100%"
+      top={0}
+      right={0}
+      transition="all 0.2s"
+    >
       <Button
         variant="ghost"
         css={closeBtn}
@@ -99,6 +114,19 @@ const SideDrawer = ({ closeDrawer }: SideDrawerProps) => {
                 </Button>
               </Flex>
               <HStack>
+                {!disconnectPressed && (
+                  <Button
+                    px={1.5}
+                    py={1.5}
+                    minW={0}
+                    minH={0}
+                    height="fit-content"
+                    borderRadius={10}
+                  >
+                    <Icon as={AiOutlineSetting} color="whiteAlpha.800" />
+                  </Button>
+                )}
+
                 <Button
                   px={1.5}
                   py={1.5}
@@ -106,18 +134,14 @@ const SideDrawer = ({ closeDrawer }: SideDrawerProps) => {
                   minH={0}
                   height="fit-content"
                   borderRadius={10}
-                >
-                  <Icon as={AiOutlineSetting} color="whiteAlpha.800" />
-                </Button>
-                <Button
-                  px={1.5}
-                  py={1.5}
-                  minW={0}
-                  minH={0}
-                  height="fit-content"
-                  borderRadius={10}
+                  gap={1}
+                  onClick={handleDisconnect}
+                  width={disconnectPressed ? 110 : 7}
+                  transition="all 0.2s"
+                  overflow="hidden"
                 >
                   <Icon as={AiOutlinePoweroff} color="whiteAlpha.800" />
+                  {disconnectPressed && <Text fontSize="sm" fontWeight="normal">Disconnect</Text>}
                 </Button>
               </HStack>
             </Flex>

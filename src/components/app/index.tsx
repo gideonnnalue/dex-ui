@@ -6,6 +6,9 @@ import { useState } from "react";
 
 const App = () => {
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+  const closeDrawer = () => {
+    setIsDrawerVisible(false)
+  }
   return (
     <ChakraProvider theme={theme}>
       <Layout
@@ -14,19 +17,8 @@ const App = () => {
         }
       >
         <Swap />
-        <AnimatePresence>
-          {isDrawerVisible && (
-            <motion.div
-              initial={{ translateX: 500 }}
-              animate={{ translateX: 0 }}
-              exit={{ translateX: 500 }}
-            >
-              <SideDrawer
-                closeDrawer={() => setIsDrawerVisible((prev) => !prev)}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+
+        <SideDrawer closeDrawer={() => setIsDrawerVisible((prev) => !prev)} isVisible={isDrawerVisible} />
       </Layout>
     </ChakraProvider>
   );
