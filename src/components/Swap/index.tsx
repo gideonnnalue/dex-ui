@@ -5,30 +5,33 @@ import {
   Flex,
   Button,
   VStack,
-  IconButton
+  IconButton,
+  Text
 } from "@chakra-ui/react";
 import { ArrowDownIcon, SettingsIcon } from "@chakra-ui/icons";
-import SwapInput from "components/SwapInput";
+import SwapInput from "components/ui/SwapInput";
+import ConnectButton from "components/ui/ConnectButton";
+import TokenSelect from "components/ui/TokenSelect";
 
 const Swap = () => {
   return (
     <Container>
       <Center>
         <Box
-          width={400}
+          width={500}
           bg="brand.900"
-          borderRadius={10}
+          borderRadius={20}
           borderWidth="1px"
-          padding={1}
+          padding={2}
         >
           <VStack gap={1}>
             <Flex justifyContent="space-between" width="100%" paddingRight={3} paddingLeft={3}>
-              <Button variant="ghost" padding={0} height="unset" fontSize={13} fontWeight={700}>
+              <Button variant="ghost" padding={0} height="unset" fontSize={16} fontWeight={700}>
                 Swap
               </Button>
               <IconButton variant="ghost" aria-label="settings" padding={0} icon={<SettingsIcon />} />
             </Flex>
-            <VStack gap={0.5} position="relative">
+            <VStack gap={1} position="relative">
               <SwapInput />
               <SwapInput />
               <IconButton
@@ -46,19 +49,11 @@ const Swap = () => {
                 bgColor="#2c313e"
               />
             </VStack>
-            <Button
-              variant="swap-btn"
-              width="100%"
-              fontWeight={600}
-              fontSize={16}
-              padding={6}
-              borderRadius={13}
-            >
-              Connect Wallet
-            </Button>
+            <ConnectButton />
           </VStack>
         </Box>
       </Center>
+      <TokenSelect />
     </Container>
   );
 };
