@@ -8,6 +8,7 @@ import {
   useDisclosure,
   Circle,
   Image,
+  useColorMode,
 } from "@chakra-ui/react";
 import TokenSelect from "./TokenSelect";
 import { TokenItem } from "./TokenSelect/SelectItem";
@@ -20,9 +21,11 @@ type SwapInputProps = {
 const SwapInput = (props: SwapInputProps) => {
   const { tokenAttributes, setTokenAttributes } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode } = useColorMode();
+  const isDark = colorMode === "dark";
   return (
     <VStack
-      bg="rgb(19, 26, 42)"
+      bg={isDark ? "rgb(19, 26, 42)" : "gray.50"}
       borderRadius={10}
       paddingTop={4}
       paddingBottom={3}
@@ -30,8 +33,8 @@ const SwapInput = (props: SwapInputProps) => {
       paddingRight={3}
       transitionProperty="borderWidth"
       transitionDuration="1.3s"
-      _hover={{ borderColor: "whiteAlpha.50" }}
-      _focusWithin={{ borderColor: "whiteAlpha.300" }}
+      _hover={{ borderColor: isDark ? "whiteAlpha.50" : "blackAlpha.50" }}
+      _focusWithin={{ borderColor: isDark ? "whiteAlpha.300" : "blackAlpha.300" }}
       borderColor="transparent"
       borderWidth={1}
       gap={1}
@@ -42,7 +45,7 @@ const SwapInput = (props: SwapInputProps) => {
           padding={0}
           placeholder="0"
           type="number"
-          fontSize={38}
+          fontSize={42}
           border="none"
           _focusVisible={{ outline: "none" }}
         />
@@ -60,17 +63,35 @@ const SwapInput = (props: SwapInputProps) => {
               <Image src={tokenAttributes.img} boxSize={6} />
             </Circle>
           )}
-          <Text fontSize={tokenAttributes ? 22 : 16} marginLeft={2}>
-            {tokenAttributes ? tokenAttributes.token : "Select Token"}
-          </Text>
-          <ChevronDownIcon as="span" boxSize={5} mx={1} />
+          {tokenAttributes ? (
+            <>
+              <Text
+                fontSize={22}
+                marginLeft={2}
+              >
+                {tokenAttributes ? tokenAttributes.token : "Select Token"}
+              </Text>
+              <ChevronDownIcon as="span" boxSize={5} mx={1} />
+            </>
+          ) : (
+            <>
+              <Text
+                fontSize={16}
+                marginLeft={2}
+                color="white"
+              >
+                Select Token
+              </Text>
+              <ChevronDownIcon as="span" boxSize={5} mx={1} color="white" />
+            </>
+          )}
         </Button>
       </Flex>
       {/* TODO: First Item: token price                   */}
       {/*       Second Item: Users balance for that token */}
       {/* <Flex justifyContent="space-between" width="100%">
-        <Text fontSize={16}>$1,739.84</Text>
-        <Text fontSize={16} color="whiteAlpha.500">
+        <Text fontSize={14}>$1,739.84</Text>
+        <Text fontSize={14} color="grey">
           Balance: 0
         </Text>
       </Flex> */}

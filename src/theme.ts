@@ -54,7 +54,7 @@ const components: Record<string, StyleConfig> = {
         };
       },
     },
-  },
+  }
 };
 
 const customConfig: CustomThemeTypings = { config, colors, styles, components };

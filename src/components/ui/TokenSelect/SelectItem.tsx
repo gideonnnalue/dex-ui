@@ -42,7 +42,7 @@ const SelectItem = (props: SelectItemProps) => {
             padding={0}
             lineHeight={1.1}
             fontWeight="light"
-            color="whiteAlpha.500"
+            color="gray"
           >
             {token}
           </Text>

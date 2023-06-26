@@ -9,6 +9,7 @@ import {
   MenuItem,
   Text,
   Circle,
+  useColorMode,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
@@ -20,7 +21,9 @@ type DrawerProps = {
 };
 
 const Header = ({ openDrawer }: DrawerProps) => {
+  const { colorMode } = useColorMode();
   const [chain, setChain] = useState(chainList[0]);
+  const isDark = colorMode === "dark";
   return (
     <Flex justify="space-between" alignItems="center" padding="10px 10px">
       <Flex></Flex>
@@ -37,14 +40,14 @@ const Header = ({ openDrawer }: DrawerProps) => {
               <ChevronDownIcon marginLeft={1} boxSize={5} />
             </Flex>
           </MenuButton>
-          <MenuList bg="brand.900">
+          <MenuList bg={isDark ? "brand.900" : "white"}>
             {chainList.map(({ name, img }) => (
               <MenuItem
                 key={name}
                 gap={3}
-                bg="brand.900"
+                bg={isDark ? "brand.900" : "white"}
                 marginBottom={2}
-                _hover={{ bgColor: "brand.800" }}
+                _hover={{ bgColor: isDark ? "brand.800" : "blackAlpha.100" }}
                 onClick={() => setChain({ name, img })}
               >
                 <Image

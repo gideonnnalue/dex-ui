@@ -6,6 +6,7 @@ import {
   Button,
   VStack,
   IconButton,
+  useColorMode,
 } from "@chakra-ui/react";
 import { ArrowDownIcon, SettingsIcon } from "@chakra-ui/icons";
 import SwapInput from "components/ui/SwapInput";
@@ -14,6 +15,7 @@ import { TokenItem } from "components/ui/TokenSelect/SelectItem";
 import { useState } from "react";
 
 const Swap = () => {
+  const { colorMode } = useColorMode()
   const [swapFrom, setSwapFrom] = useState<TokenItem | null>(null);
   const [swapTo, setSwapTo] = useState<TokenItem | null>(null);
   const swapTokenInput = () => {
@@ -22,12 +24,13 @@ const Swap = () => {
     setSwapFrom(token2);
     setSwapTo(token1);
   };
+  const isDark: boolean = colorMode === "dark";
   return (
     <Container>
       <Center>
         <Box
           width={470}
-          bg="brand.900"
+          bg={isDark ? "brand.900" : "white"}
           borderRadius={20}
           borderWidth="1px"
           padding={2}
@@ -66,7 +69,7 @@ const Swap = () => {
               />
               <IconButton
                 aria-label="switch swap"
-                icon={<ArrowDownIcon boxSize={4} color="white" />}
+                icon={<ArrowDownIcon boxSize={4} color={isDark ? "white" : "blackAlpha.900"} />}
                 padding={2}
                 height="fit-content"
                 minWidth="fit-content"
@@ -74,10 +77,10 @@ const Swap = () => {
                 top="50%"
                 left="50%"
                 transform="translate(-50%, -50%)"
-                borderWidth={2}
-                borderColor="brand.900"
-                _hover={{ bg: "rgb(66 71 82)" }}
-                bgColor="#2c313e"
+                borderWidth={3}
+                borderColor={isDark ? "brand.900" : "white"}
+                _hover={{ bg: isDark ? "rgb(66 71 82)" : "gray.50" }}
+                bgColor={isDark ? "#2c313e": "grey.100"}
                 onClick={swapTokenInput}
               />
             </VStack>

@@ -1,14 +1,8 @@
 import { ArrowRightIcon } from "@chakra-ui/icons";
-import { Box, Button, Text, Flex, VStack } from "@chakra-ui/react";
+import { Box, Button, Text, Flex, VStack, useColorMode } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import ThemeSwitcher from "./ThemeSwitcher";
 import DrawerHeader from "./DrawerHeader";
-
-const closeBtn = css`
-  &:hover svg {
-    color: var(--chakra-colors-whiteAlpha-400);
-  }
-`;
 
 type SideDrawerProps = {
   closeDrawer: () => void;
@@ -16,6 +10,13 @@ type SideDrawerProps = {
 };
 
 const SideDrawer = ({ closeDrawer, isVisible }: SideDrawerProps) => {
+  const {colorMode} = useColorMode();
+  const isDark = colorMode === "dark";
+  const closeBtn = css`
+  &:hover svg {
+    color: var(--chakra-colors-${isDark ? "whiteAlpha" : "blackAlpha"}-400);
+  }
+`;
   return (
     <Box
       transform={`translateX(${isVisible ? "0px" : "500px"})`}
@@ -41,7 +42,7 @@ const SideDrawer = ({ closeDrawer, isVisible }: SideDrawerProps) => {
         transition="all 0.2s"
         _hover={{
           width: "92.5%",
-          bg: "whiteAlpha.50",
+          bg: isDark ? "whiteAlpha.50" : "blackAlpha.50",
         }}
         display="flex"
         alignItems="flex-start"
@@ -50,7 +51,7 @@ const SideDrawer = ({ closeDrawer, isVisible }: SideDrawerProps) => {
       >
         <ArrowRightIcon
           boxSize={2.5}
-          color="whiteAlpha.700"
+          color={isDark ? "whiteAlpha.700" : "blackAlpha.700"}
           transition="all 0.2s"
         />
       </Button>
@@ -61,7 +62,7 @@ const SideDrawer = ({ closeDrawer, isVisible }: SideDrawerProps) => {
         height="98%"
         top={2}
         right={2}
-        bg="brand.900"
+        bg={colorMode === "dark" ? "brand.900" : "white"}
         borderRadius={10}
         px={5}
         py={4}
