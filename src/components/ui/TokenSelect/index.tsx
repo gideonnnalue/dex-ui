@@ -1,4 +1,3 @@
-import { SearchIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -9,42 +8,12 @@ import {
   InputGroup,
   InputLeftElement,
   Input,
-  HStack,
-  Circle,
-  Image,
   VStack,
   Icon,
 } from "@chakra-ui/react";
 import { FiSearch } from "react-icons/fi";
-
-import ethereumImg from "assets/chains/ethereum.png";
-import polygonImg from "assets/chains/polygon-matic-logo.svg";
-import optimismImg from "assets/chains/optimistic_ethereum.svg";
-import arbitrumImg from "assets/chains/arbitrum_logo.svg";
-import celoImg from "assets/chains/celo_logo.svg";
-import bnbImg from "assets/chains/bnb-logo.svg";
 import SelectItem, { TokenItem } from "./SelectItem";
-
-const tokeList = [
-  { name: "Ethereum", token: "ETH", img: ethereumImg },
-  { name: "Polygon", token: "MATIC", img: polygonImg },
-  { name: "Optimism", token: "OPT", img: optimismImg },
-  { name: "Arbitrum", token: "ARB", img: arbitrumImg },
-  { name: "Celo", token: "CELO", img: celoImg },
-  { name: "BNB Chain", token: "BNB", img: bnbImg },
-  // { name: "Ethereum", token: "ETH", img: ethereumImg },
-  // { name: "Polygon", token: "MATIC", img: polygonImg },
-  // { name: "Optimism", token: "OPT", img: optimismImg },
-  // { name: "Arbitrum", token: "ARB", img: arbitrumImg },
-  // { name: "Celo", token: "CELO", img: celoImg },
-  // { name: "BNB Chain", token: "BNB", img: bnbImg },
-  // { name: "Ethereum", token: "ETH", img: ethereumImg },
-  // { name: "Polygon", token: "MATIC", img: polygonImg },
-  // { name: "Optimism", token: "OPT", img: optimismImg },
-  // { name: "Arbitrum", token: "ARB", img: arbitrumImg },
-  // { name: "Celo", token: "CELO", img: celoImg },
-  // { name: "BNB Chain", token: "BNB", img: bnbImg },
-];
+import { tokenList } from "utils/mockChains";
 
 type TokenSelectProps = {
   isOpen: boolean;
@@ -78,7 +47,7 @@ const TokenSelect = (props: TokenSelectProps) => {
           </InputGroup>
         </VStack>
         <ModalBody px={0}>
-          {tokeList.map((token) => (
+          {tokenList.map((token) => (
             <SelectItem
               key={token.name}
               name={token.name}

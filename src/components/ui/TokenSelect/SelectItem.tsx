@@ -22,6 +22,7 @@ const SelectItem = (props: SelectItemProps) => {
       px={6}
       _hover={{ bg: "whiteAlpha.200" }}
       onClick={() => onSelect({ name, token, img })}
+      cursor="pointer"
     >
       <HStack gap={4}>
         <Circle>

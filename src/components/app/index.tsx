@@ -1,14 +1,10 @@
 import { Button, ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import { Layout, Header, Swap, SideDrawer } from "components";
 import theme from "theme";
-import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 const App = () => {
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
-  const closeDrawer = () => {
-    setIsDrawerVisible(false)
-  }
   return (
     <ChakraProvider theme={theme}>
       <Layout
