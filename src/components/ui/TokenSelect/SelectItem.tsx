@@ -1,15 +1,28 @@
 import { Circle, HStack, Image, VStack, Text } from "@chakra-ui/react";
 
-type SelectItemProps = {
+export type TokenItem = {
   name: string;
   token: string;
   img: string;
 };
 
+type SelectItemProps = {
+  name: string;
+  token: string;
+  img: string;
+  onSelect: (item: TokenItem) => unknown;
+};
+
 const SelectItem = (props: SelectItemProps) => {
-  const { name, token, img } = props;
+  const { name, token, img, onSelect } = props;
   return (
-    <HStack justifyContent="space-between" py={3} px={6} _hover={{bg: "whiteAlpha.200"}}>
+    <HStack
+      justifyContent="space-between"
+      py={3}
+      px={6}
+      _hover={{ bg: "whiteAlpha.200" }}
+      onClick={() => onSelect({ name, token, img })}
+    >
       <HStack gap={4}>
         <Circle>
           <Image src={img} boxSize={8} />

@@ -4,13 +4,8 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
-  Text,
-  useDisclosure,
-  Box,
   InputGroup,
   InputLeftElement,
   Input,
@@ -28,7 +23,7 @@ import optimismImg from "assets/chains/optimistic_ethereum.svg";
 import arbitrumImg from "assets/chains/arbitrum_logo.svg";
 import celoImg from "assets/chains/celo_logo.svg";
 import bnbImg from "assets/chains/bnb-logo.svg";
-import SelectItem from "./SelectItem";
+import SelectItem, { TokenItem } from "./SelectItem";
 
 const tokeList = [
   { name: "Ethereum", token: "ETH", img: ethereumImg },
@@ -37,28 +32,33 @@ const tokeList = [
   { name: "Arbitrum", token: "ARB", img: arbitrumImg },
   { name: "Celo", token: "CELO", img: celoImg },
   { name: "BNB Chain", token: "BNB", img: bnbImg },
-  { name: "Ethereum", token: "ETH", img: ethereumImg },
-  { name: "Polygon", token: "MATIC", img: polygonImg },
-  { name: "Optimism", token: "OPT", img: optimismImg },
-  { name: "Arbitrum", token: "ARB", img: arbitrumImg },
-  { name: "Celo", token: "CELO", img: celoImg },
-  { name: "BNB Chain", token: "BNB", img: bnbImg },
-  { name: "Ethereum", token: "ETH", img: ethereumImg },
-  { name: "Polygon", token: "MATIC", img: polygonImg },
-  { name: "Optimism", token: "OPT", img: optimismImg },
-  { name: "Arbitrum", token: "ARB", img: arbitrumImg },
-  { name: "Celo", token: "CELO", img: celoImg },
-  { name: "BNB Chain", token: "BNB", img: bnbImg },
+  // { name: "Ethereum", token: "ETH", img: ethereumImg },
+  // { name: "Polygon", token: "MATIC", img: polygonImg },
+  // { name: "Optimism", token: "OPT", img: optimismImg },
+  // { name: "Arbitrum", token: "ARB", img: arbitrumImg },
+  // { name: "Celo", token: "CELO", img: celoImg },
+  // { name: "BNB Chain", token: "BNB", img: bnbImg },
+  // { name: "Ethereum", token: "ETH", img: ethereumImg },
+  // { name: "Polygon", token: "MATIC", img: polygonImg },
+  // { name: "Optimism", token: "OPT", img: optimismImg },
+  // { name: "Arbitrum", token: "ARB", img: arbitrumImg },
+  // { name: "Celo", token: "CELO", img: celoImg },
+  // { name: "BNB Chain", token: "BNB", img: bnbImg },
 ];
 
 type TokenSelectProps = {
   isOpen: boolean;
   onOpen: () => unknown;
   onClose: () => unknown;
+  onSelect: (item: TokenItem) => unknown;
 };
 
 const TokenSelect = (props: TokenSelectProps) => {
-  const { isOpen, onOpen, onClose } = props;
+  const { isOpen, onOpen, onClose, onSelect } = props;
+  const onSelectToken = (item: TokenItem) => {
+    onClose();
+    onSelect(item)
+  } 
   return (
     <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
       <ModalOverlay />
@@ -84,6 +84,7 @@ const TokenSelect = (props: TokenSelectProps) => {
               name={token.name}
               token={token.token}
               img={token.img}
+              onSelect={onSelectToken}
             />
           ))}
         </ModalBody>

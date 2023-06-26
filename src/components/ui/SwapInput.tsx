@@ -6,10 +6,19 @@ import {
   Text,
   VStack,
   useDisclosure,
+  Circle,
+  Image,
 } from "@chakra-ui/react";
 import TokenSelect from "./TokenSelect";
+import { TokenItem } from "./TokenSelect/SelectItem";
 
-const SwapInput = () => {
+type SwapInputProps = {
+  tokenAttributes: TokenItem | null;
+  setTokenAttributes: (tokenAttributes: TokenItem) => unknown;
+};
+
+const SwapInput = (props: SwapInputProps) => {
+  const { tokenAttributes, setTokenAttributes } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <VStack
@@ -38,18 +47,23 @@ const SwapInput = () => {
           _focusVisible={{ outline: "none" }}
         />
         <Button
-          bg="rgba(255, 255, 255, 0.15)"
+          bg={tokenAttributes ? "rgba(255, 255, 255, 0.15)" : "brand.300"}
           padding="3px 18px"
           borderRadius={1000}
           height="fit-content"
           minHeight="unset"
           onClick={onOpen}
+          width="fit-content"
         >
-          <Text as="span" fontSize={8} marginRight={2}>
-            ETH
+          {tokenAttributes && (
+            <Circle color="whiteAlpha.500" bg="white">
+              <Image src={tokenAttributes.img} boxSize={6} />
+            </Circle>
+          )}
+          <Text fontSize={tokenAttributes ? 22 : 16} marginLeft={2}>
+            {tokenAttributes ? tokenAttributes.token : "Select Token"}
           </Text>
-          <Text fontSize={22}>ETH</Text>
-          <ChevronDownIcon as="span" boxSize={5} marginLeft={2} />
+          <ChevronDownIcon as="span" boxSize={5} mx={1} />
         </Button>
       </Flex>
       {/* TODO: First Item: token price                   */}
@@ -60,7 +74,12 @@ const SwapInput = () => {
           Balance: 0
         </Text>
       </Flex> */}
-      <TokenSelect isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+      <TokenSelect
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        onSelect={(items) => setTokenAttributes(items)}
+      />
     </VStack>
   );
 };
